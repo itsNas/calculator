@@ -1,0 +1,101 @@
+// link all html elements so that we can manipulate the dom
+const previousDisplay = document.getElementById('previous-display');
+const currentDisplay = document.getElementById('current-display');
+const tempDisplay = document.getElementById('temp-display');
+const clearBtn = document.getElementById('clear-btn')
+const deleteBtn = document.getElementById('delete-btn')
+const pointBtn = document.getElementById('point-btn')
+const equalsBtn = document.getElementById('equals-btn')
+const numbersBtn = document.querySelectorAll('[data-number]')
+const operatorBtn = document.querySelectorAll('[data-operator]')
+
+let previousDisplayNum = '';
+let currentDisplayNum = '';
+let result = null;
+let lastOperation = '';
+let haveDot = false;
+
+//DOM manipulation section. This will run the function that we want after action
+clearBtn.addEventListener('click', allClear)
+deleteBtn.addEventListener('click', deleteNumber)
+equalsBtn.addEventListener('click', evaluate)
+numbersBtn.forEach((button) => button.addEventListener('click', () => appendNumber(button.textContent)))
+operatorBtn.forEach((button) => button.addEventListener('click', () => setOperation(button.textContent)))
+
+
+//function to append number
+function appendNumber(number) {
+    if (currentDisplayNum === result) {
+        allClear()
+    }
+    if (number === '.' && !haveDot) {
+        haveDot = true
+    } else if (number === '.' && haveDot) {
+        return
+    }
+    currentDisplayNum += number;
+    currentDisplay.textContent = currentDisplayNum;
+}
+
+// function set operation
+function setOperation(operator) {
+    if (!currentDisplayNum) return;
+    haveDot = false
+    operationName = operator
+    if (currentDisplayNum && previousDisplayNum && lastOperation) {
+        operate()
+    } else {
+        result = parseFloat(currentDisplayNum);
+    }
+    clearVar(operationName);
+    lastOperation = operationName;
+}
+
+function clearVar(name) {
+    previousDisplayNum += ` ${currentDisplayNum} ${name}`
+    previousDisplay.textContent = previousDisplayNum;
+    currentDisplay.textContent = '';
+    currentDisplayNum = ''
+    currentDisplay.textContent = result;
+}
+
+// function to evaluate
+function operate() {
+    if (lastOperation === '+') {
+        result = parseFloat(result) + parseFloat(currentDisplayNum);
+    } else if (lastOperation === '-') {
+        result = parseFloat(result) - parseFloat(currentDisplayNum);
+    } else if (lastOperation === '×') {
+        result = parseFloat(result) * parseFloat(currentDisplayNum);
+    } else if (lastOperation === '÷') {
+        result = parseFloat(result) / parseFloat(currentDisplayNum);
+    } else if (lastOperation === '%') {
+        result = parseFloat(result) / parseFloat(currentDisplayNum);
+    }
+}
+
+function evaluate() {
+    // if (!previousDisplayNum && !currentDisplayNum) return
+    haveDot = false;
+    operate();
+    lastOperation = '='
+    clearVar(lastOperation);
+    currentDisplay.textContent = result;
+    currentDisplayNum = result;
+    previousDisplayNum = '';
+}
+
+function deleteNumber() {
+    if (currentDisplayNum || currentDisplay.textContent === '0') return
+    currentDisplay.textContent = currentDisplay.textContent.toString().slice(0, -1)
+    currentDisplayNum = currentDisplay.textContent;
+}
+
+// function to clear display
+function allClear() {
+    previousDisplay.textContent = '';
+    currentDisplay.textContent = '0';
+    previousDisplayNum = '';
+    currentDisplayNum = '';
+    result = '';
+}

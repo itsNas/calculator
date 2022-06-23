@@ -18,7 +18,7 @@ body {
     align-content: center;
     min-height: 100vh;
     grid-template-columns: repeat(4, 80px);
-    grid-template-rows: minmax(200px, auto) repeat(5, 80px);
+    grid-template-rows: minmax(150px, auto) repeat(5, 80px);
 }
 
 button {
@@ -60,13 +60,16 @@ button:hover {
     border-bottom: 1px #e6630d solid;
 }
 
-.previous-operand {
+
+
+
+.previous-display {
     color: white;
     opacity: 0.4;
     font-size: 1.5rem;
 }
 
-.current-operand {
+.current-display {
     color: white;
     font-size: 3.0rem;
 }
