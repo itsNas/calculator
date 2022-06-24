@@ -123,3 +123,21 @@ function allClear() {
     currentDisplayNum = '';
     result = '';
 }
+
+function handleKeyboardInput(e) {
+    if ((e.key >= 0 && e.key <= 9) || e.key === '.') appendNumber(e.key)
+    if (e.key === 'Enter' || e.key === '=') evaluate()
+    if (e.key === 'Backspace') deleteNumber()
+    if (e.key === '%') getPercents()
+    if (e.key === '_') getPlusMinus()
+    if (e.key === 'Escape') allClear()
+    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
+        setOperation(convertOperator(e.key))
+}
+
+function convertOperator(keyboardOperator) {
+    if (keyboardOperator === '/') return '÷'
+    if (keyboardOperator === '*') return '×'
+    if (keyboardOperator === '-') return '-'
+    if (keyboardOperator === '+') return '+'
+}

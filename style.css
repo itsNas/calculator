@@ -9,7 +9,7 @@
 body {
     padding: 0;
     margin: 0;
-    background: linear-gradient(to right, #ce3838, #300505);
+    background: linear-gradient(to right, #38ceba, #1726b3);
 }
 
 .calculator-grid {
@@ -36,11 +36,13 @@ button:hover {
 
 .btn-opr {
     color: #e6630d;
+    font-weight: bolder;
 }
 
 .btn-number {
     color: white;
 }
+
 
 .span-two {
     grid-column: span 2;
