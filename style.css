@@ -34,8 +34,7 @@ button:hover {
     background-color: #232936;
 }
 
-.btn-opr,
-.span-two {
+.btn-opr {
     color: #e6630d;
 }
 
@@ -59,9 +58,6 @@ button:hover {
     word-break: break-all;
     border-bottom: 1px #e6630d solid;
 }
-
-
-
 
 .previous-display {
     color: white;
