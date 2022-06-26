@@ -1,7 +1,6 @@
 // link all html elements so that we can manipulate the dom
 const previousDisplay = document.getElementById('previous-display');
 const currentDisplay = document.getElementById('current-display');
-const tempDisplay = document.getElementById('temp-display');
 const clearBtn = document.getElementById('clear-btn')
 const deleteBtn = document.getElementById('delete-btn')
 const pointBtn = document.getElementById('point-btn')
