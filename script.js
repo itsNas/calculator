@@ -38,14 +38,13 @@ function appendNumber(number) {
     } else if (number === '.' && haveDot) {
         return
     }
-
     currentDisplayNum += number;
     currentDisplay.textContent = currentDisplayNum;
 }
 
 function getPercents() {
     if ((currentDisplay.textContent === '0' && currentDisplayNum === '')) return
-
+    if (currentDisplayNum === '') return
     let newNumber = parseFloat(currentDisplay.textContent) / 100;
     currentDisplay.textContent = newNumber
     currentDisplayNum = currentDisplay.textContent;
@@ -53,7 +52,7 @@ function getPercents() {
 
 function getPlusMinus() {
     if ((currentDisplay.textContent === '0' && currentDisplayNum === '')) return
-
+    if (currentDisplayNum === '') return
     let newNumber = parseFloat(currentDisplayNum) * -1;
     currentDisplay.textContent = newNumber
     currentDisplayNum = currentDisplay.textContent;
@@ -69,7 +68,6 @@ function setOperation(operator) {
     } else {
         result = parseFloat(currentDisplayNum);
     }
-
     clearVar(operationName);
     lastOperation = operationName;
     currentDisplay.textContent = ''
@@ -98,7 +96,6 @@ function operate() {
 
 function evaluate() {
     if (!previousDisplayNum || !currentDisplayNum) return
-
     haveDot = false;
     operate();
     lastOperation = '='
@@ -126,7 +123,7 @@ function allClear() {
 
 function handleKeyboardInput(e) {
     if ((e.key >= 0 && e.key <= 9) || e.key === '.') appendNumber(e.key)
-    if (e.key === 'Enter' || e.key === '=') evaluate()
+    if (e.key === '=') evaluate()
     if (e.key === 'Backspace') deleteNumber()
     if (e.key === '%') getPercents()
     if (e.key === '_') getPlusMinus()
