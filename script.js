@@ -43,7 +43,7 @@ function appendNumber(number) {
 
 // function to set  and print percent values
 function getPercents() {
-    if (currentDisplayNum === '') return //prevent user from trying to press '%' before number input
+    if (currentDisplayNum === '' || currentDisplayNum === '.') return //prevent user from trying to press '%' before number input
     let newNumber = parseFloat(currentDisplay.textContent) / 100;
     currentDisplay.textContent = newNumber
     currentDisplayNum = currentDisplay.textContent;
@@ -51,7 +51,7 @@ function getPercents() {
 
 // function to set  and print negative/positive values
 function getPlusMinus() {
-    if (currentDisplayNum === '') return //prevent user from trying to press '+/-' button before number input
+    if (currentDisplayNum === '' || currentDisplayNum === '.') return //prevent user from trying to press '+/-' button before number input
     let newNumber = parseFloat(currentDisplayNum) * -1;
     currentDisplay.textContent = newNumber
     currentDisplayNum = currentDisplay.textContent;
