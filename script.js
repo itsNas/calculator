@@ -43,7 +43,6 @@ function appendNumber(number) {
 }
 
 function getPercents() {
-    if ((currentDisplay.textContent === '0' && currentDisplayNum === '')) return
     if (currentDisplayNum === '') return
     let newNumber = parseFloat(currentDisplay.textContent) / 100;
     currentDisplay.textContent = newNumber
@@ -51,7 +50,6 @@ function getPercents() {
 }
 
 function getPlusMinus() {
-    if ((currentDisplay.textContent === '0' && currentDisplayNum === '')) return
     if (currentDisplayNum === '') return
     let newNumber = parseFloat(currentDisplayNum) * -1;
     currentDisplay.textContent = newNumber
@@ -107,7 +105,6 @@ function evaluate() {
 
 function deleteNumber() {
     if ((currentDisplay.textContent === '0' && currentDisplayNum === '') || currentDisplayNum === result) return
-
     currentDisplay.textContent = currentDisplay.textContent.toString().slice(0, -1)
     currentDisplayNum = currentDisplay.textContent;
 }
